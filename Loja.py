@@ -1,14 +1,22 @@
+from rascunho_ana import Produto 
+from rascunho_ana import Cholocate 
+from rascunho_ana import Roupa 
+from test_invetario import Inventario 
+import Menu
+
+
 class Loja:
-    def __init__(self, nome):
+    def __init__(self, nome, produtos):
         self.nome = nome
-        self.inventário = Inventário()
+        self.inventário = Inventario(produtos)
         self.vendas = []
 
-        self.inventário.adicionar('Chocolate', 10)
-
     def vender(self, produto, quantidade):
-        self.vendas.append([produto, quantidade])
-        self.inventário.remover(produto, quantidade)
+        if self.inventário.produtos[produto] >= quantidade:
+            self.vendas.append([produto, quantidade])
+            self.inventário.remover(produto, quantidade)
+        else:
+            print("Estoque insuficiente.")
 
     def repor(self, produto, quantidade):
         self.inventário.adicionar(produto, quantidade)
@@ -18,5 +26,25 @@ class Loja:
         self.inventário.adicionar(produto, quantidade)
 
     def show(self):
-        for venda in vendas:
-            print(f"{self.venda[0]} x {self.venda[1]} = {self.inventário.produtos[venda[0]]}")
+        print("===  Vendas  ===")
+
+        for venda in self.vendas:
+            produto = venda[0]
+            quantidade = venda[1]
+
+            indice = self.inventário.pesquisa(produto)
+            preco = self.inventário.lista[indice].preco
+
+            print(f"{produto:<10s} x {quantidade}  =  R${preco * quantidade}")
+        
+        print("================")
+
+prod_1 = Cholocate("Talento", 8, 325341, "nestle", "prestigio", 80)
+prod_2 = Roupa("Calça", 120, 546372, "Marisa", "calça", "jeans")
+
+loja = Loja("Varejo", [prod_1, prod_2])
+loja.repor('Talento', 100)
+
+loja.vender('Talento', 3)
+loja.vender('Calça', 10)
+loja.show()

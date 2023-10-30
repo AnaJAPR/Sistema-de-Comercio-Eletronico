@@ -1,5 +1,4 @@
 import sys
-import time
 
 def input_validate(message, start, end):
     while True:
@@ -46,9 +45,7 @@ class App:
         self.menu.add_option("Venda", 1)
         self.menu.add_option("Retorno", 1)
         self.menu.add_option("Restoque", 1)
+        self.menu.add_option("Mostrar", 1)
 
     def execute(self):
         self.menu.execute()
-
-menu = App()
-menu.execute()
