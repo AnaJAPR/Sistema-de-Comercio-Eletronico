@@ -30,7 +30,7 @@ class Roupa(Produto):
         self.tipo_tecido = tipo_tecido
 
 
-class Cholocate(Produto):
+class Chocolate(Produto):
     def __init__(self, nome, valor, marca_produto, sabor, peso_mg):
         super().__init__(nome, valor, marca_produto)
         self.sabor = sabor
@@ -50,8 +50,18 @@ class id_marca(Enum):
     
 print(id_marca)
 
-prod_1 = Cholocate("Talento", 8, "nestle", "prestigio", 80)
-prod_1.salvar_codigo_barras()
-print(prod_1)
+prod_1 = Chocolate("Talento", 8, "Nestle", "Maracujá", 80)
+prod_2 = Chocolate("Barra de Chocolate", 6.5, "Garoto", "Chocolate Amargo", 75)
+prod_3 = Chocolate("Bombom Serenata", 1, "Garoto", "Amendoim", 10)
 
+prod_4 = Roupa("Calça", 120, 546372, "Marisa", "jeans")
+prod_5 = Roupa("Vestido", 90, 547384, "Renner", "Malha Estampada")
+prod_6 = Roupa("Jaqueta", 240, 336475, "C&A", "Couro")
+
+prod_7 = Refrigerante("Fanta Laranja", 7, 546374, "Fanta", "lata", "laranja")
+prod_8 = Refrigerante("Coca-Cola", 12, 647583, "Coca-Cola", "KS", "Coca-Cola")
+prod_9 = Refrigerante("Guaraná", 9, 647583, "Guaraná", "garrafa plástica", "Guaraná")
+
+print(prod_1.nome)
+        
     
