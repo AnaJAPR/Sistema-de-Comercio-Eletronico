@@ -1,6 +1,10 @@
 from rascunho_ana import Produto
 
 class Inventario:
+    """ Classe de um inventário que aceita apenas uma lista
+        de objetos Produto e os armazena na memória.
+    """
+
     def __init__(self, produtos: list[Produto]):
         self.produtos = dict()
         self.lista = produtos
@@ -25,13 +29,17 @@ class Inventario:
         return "-----------------------------------"
 
     def remover(self, produto, quantidade):
+        # Remove a quantidade. A validação deve vir da Loja.
         self.produtos[produto] -= quantidade
 
     def adicionar(self, produto, quantidade):
+        # Adiciona a quantidade.
         self.produtos[produto] += quantidade
 
     def pesquisa(self, nome):
+        # Pesquisa o nome entre os produtos no inventário. Retorna o índice.
         for indice, produto in enumerate(self.lista):
+
             if produto.nome == nome:
                 return indice
 

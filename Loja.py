@@ -33,8 +33,12 @@ class Loja:
             quantidade = venda[1]
 
             indice = self.inventário.pesquisa(produto)
-            preco = self.inventário.lista[indice].preco
 
+            if indice == -1:
+                continue
+
+            preco = self.inventário.lista[indice].preco
+            
             print(f"{produto:<10s} x {quantidade}  =  R${preco * quantidade}")
         
         print("================")
