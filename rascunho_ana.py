@@ -37,9 +37,7 @@ class Produto():
             print(err)
         except excecoes.MarcaInvalidaError as err:
             print(err)
-        
-        finally:
-            print("Produto não foi adicionado.")
+            
         else:
             self.nome = nome
             self.preco = preco
