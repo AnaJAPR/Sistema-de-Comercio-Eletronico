@@ -68,14 +68,14 @@ prod_7 = Refrigerante("Fanta Laranja", 7, Marca.FANTA, "lata", "laranja")
 prod_8 = Refrigerante("Coca-Cola", 12, Marca.COCA_COLA, "KS", "Coca-Cola")
 prod_9 = Refrigerante("Guaraná", 9, Marca.GUARANA, "garrafa plástica", "Guaraná")
 
-'''
-print(prod_1)
-print(prod_2)
-print(prod_3)
-print(prod_4)
-print(prod_5)
-print(prod_6)
-print(prod_7)
-print(prod_8)
-print(prod_9)
-'''
+if __name__ == "__main__":
+    # print(prod_1)
+    # print(prod_2)
+    # print(prod_3)
+    # print(prod_4)
+    # print(prod_5)
+    # print(prod_6)
+    # print(prod_7)
+    # print(prod_8)
+    # print(prod_9)
+    pass
