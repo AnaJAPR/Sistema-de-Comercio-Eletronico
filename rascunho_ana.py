@@ -1,5 +1,6 @@
 from enum import Enum
 import aspose.barcode as barcode
+import excecoes
 
 class Marca(Enum):
     NESTLE = 101
@@ -12,23 +13,45 @@ class Marca(Enum):
     
     def __str__(self):
         return self.name
-    
+
 
 class Produto():
     id_produto = 1
 
-    def __init__(self, nome, preco, marca_produto):
-        self.nome = nome
-        self.preco = preco
-        self.marca_produto = marca_produto
-        self.id_produto = Produto.id_produto
-        Produto.id_produto += 1
-        
-        gerador_codigo_barras = barcode.generation.BarcodeGenerator(barcode.generation.EncodeTypes.CODE_39_STANDARD)
-        gerador_codigo_barras.code_text = f"{self.nome} - {self.id_produto}"
-
-        self.codigo_de_barras = gerador_codigo_barras
+    def __init__(self, nome: str, preco: float|int, marca_produto):
+        marcas_validas = []
+        for marca in Marca:
+            marcas_validas.append(Marca[marca.name].name)
     
+        try:
+            if type(nome) != str or type(preco) not in (int, float):
+                raise excecoes.TipoIncorretoError
+            if preco < 0:
+                raise excecoes.PrecoNegativoError
+            elif marca_produto.name not in marcas_validas:
+                raise excecoes.MarcaInvalidaError
+    
+        except excecoes.TipoIncorretoError as err:
+            print(err)
+        except excecoes.PrecoNegativoError as err:
+            print(err)
+        except excecoes.MarcaInvalidaError as err:
+            print(err)
+            
+        else:
+            self.nome = nome
+            self.preco = preco
+            self.marca_produto = marca_produto
+
+            self.id_produto = Produto.id_produto
+            Produto.id_produto += 1
+            
+            gerador_codigo_barras = barcode.generation.BarcodeGenerator(barcode.generation.EncodeTypes.CODE_39_STANDARD)
+            gerador_codigo_barras.code_text = f"{self.nome} - {self.id_produto}"
+
+            self.codigo_de_barras = gerador_codigo_barras
+        
+        
     def get_nome(self):
         return self.nome
     
@@ -55,7 +78,7 @@ class Produto():
             self.nova_marca_produto = nova_marca_produto
         else:
             print("A marca do produto deve ser uma string!")
-    
+            
     def __str__(self):
         return f"{self.nome} - ({self.marca_produto})"
     
@@ -141,21 +164,14 @@ prod_8 = Refrigerante("Coca-Cola", 12, Marca.COCA_COLA, "KS", "Coca-Cola")
 prod_9 = Refrigerante("Guaraná", 9, Marca.GUARANA, "garrafa plástica", "Guaraná")
 
 
-# Testa o setter para o atributo _preco
-novo_preco = -25
-prod_1.set_preco(novo_preco)
-
-# Verifica se o preço foi alterado, se não for alterado aparece a mensagem de erro e o preço anterior do produto 1
-preco_atual = prod_1.get_preco()
-print(f"Novo preço: {preco_atual}")
-'''
-print(prod_1)
-print(prod_2)
-print(prod_3)
-print(prod_4)
-print(prod_5)
-print(prod_6)
-print(prod_7)
-print(prod_8)
-print(prod_9)
-'''
+if __name__ == "__main__":
+    # print(prod_1)
+    # print(prod_2)
+    # print(prod_3)
+    # print(prod_4)
+    # print(prod_5)
+    # print(prod_6)
+    # print(prod_7)
+    # print(prod_8)
+    # print(prod_9)
+    pass
