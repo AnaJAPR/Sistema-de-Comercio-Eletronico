@@ -19,12 +19,12 @@ class Inventario:
         return self.produtos[p]
 
     def mostrar(self):
-        print("-----------------------------------")
-        print("|           Produto |  Quantidade |")
+        print("--------------------------------------------")
+        print("|           Produto |  Quantidade |  Preço |")
 
         for produto in self.produtos:
-            print("|-------------------|-------------|")
-            print(f"|         {produto:>9} |    {self.produtos[produto]:>8} |")
+            print("|-------------------|-------------|--------|")
+            print(f"| {produto:>17} | {self.produtos[produto]:>11} | ")
 
         print("-----------------------------------")
 
