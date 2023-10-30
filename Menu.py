@@ -1,7 +1,14 @@
 import sys
+from rascunho_ana import Produto 
+from rascunho_ana import Chocolate 
+from rascunho_ana import Roupa 
+from rascunho_ana import Refrigerante
+from test_invetario import Inventario
+from Loja import Loja 
 
-# Valida o input entre start e end, usando a message
 def input_validate(message, start, end):
+    """ Valida o input entre start e end, usando uma mensagem. """
+
     while True:
         try:
             choice = int(input(message))
@@ -51,12 +58,22 @@ class Menu:
 
 class App:
     """ Classe de um aplicativo que encapsula o menu da loja e o executa. """
-    def __init__(self):
+    def __init__(self, loja):
+        self.loja = loja
         self.menu = Menu()
-        self.menu.add_option("Venda", 1)
-        self.menu.add_option("Retorno", 1)
-        self.menu.add_option("Restoque", 1)
-        self.menu.add_option("Mostrar", 1)
+
+        self.menu.add_option("Venda", self.loja.vender)
+        self.menu.add_option("Retorno", self.loja.retornar)
+        self.menu.add_option("Restoque", self.loja.repor)
+        self.menu.add_option("Mostrar venda", self.loja.mostrar_vendas)
+        self.menu.add_option("Mostrar inventário", self.loja.inventario.mostrar)
 
     def execute(self):
         self.menu.execute()
+
+prod_1 = Chocolate("Talento", 8, "nestle", "prestigio", 80)
+prod_2 = Roupa("Calça", 120, "Marisa", "jeans")
+
+loja = Loja("Varejo", [prod_1, prod_2])
+menu = App(loja)
+menu.execute()

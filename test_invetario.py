@@ -18,7 +18,7 @@ class Inventario:
     def __getitem__(self, p):
         return self.produtos[p]
 
-    def __str__(self):
+    def mostrar(self):
         print("-----------------------------------")
         print("|           Produto |  Quantidade |")
 
@@ -26,7 +26,7 @@ class Inventario:
             print("|-------------------|-------------|")
             print(f"|         {produto:>9} |    {self.produtos[produto]:>8} |")
 
-        return "-----------------------------------"
+        print("-----------------------------------")
 
     def remover(self, produto, quantidade):
         # Remove a quantidade. A validação deve vir da Loja.
