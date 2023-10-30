@@ -14,3 +14,13 @@ except DeuRuimError:
     print("Pelo menos tentamos 2...")
 except ZeroDivisionError:
     print("Pelo menos tentamos...")
+
+
+class TipoIncorretoError(TypeError):
+    def __init__(self, message="Tipo de dado inserido está incorreto, tente olhar a documentação e inserir novamente.") -> None:
+        self.message = message
+        super().__init__(self.message)
+
+
+
+
