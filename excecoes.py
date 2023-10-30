@@ -18,6 +18,12 @@ class PrecoNegativoError(ValueError):
         super().__init__(self.message)
 
 
+class MarcaInvalidaError(KeyError):
+    def __init__(self, message="A marca é inválida, tente conferir quais marcas são válidas e inserir uma nova.") -> None:
+        self.message = message
+        super().__init__(self.message)
+
+
 if __name__ == "__main__":
     # teste da exceção criada acima
     def teste():

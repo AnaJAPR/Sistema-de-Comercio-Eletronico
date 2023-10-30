@@ -1,5 +1,6 @@
 from enum import Enum
 import aspose.barcode as barcode
+import excecoes
 
 class Marca(Enum):
     NESTLE = 101
@@ -12,22 +13,45 @@ class Marca(Enum):
     
     def __str__(self):
         return self.name
-    
+
 
 class Produto():
     id_produto = 1
 
-    def __init__(self, nome, preco, marca_produto):
-        self.nome = nome
-        self.preco = preco
-        self.marca_produto = marca_produto
-        self.id_produto = Produto.id_produto
-        Produto.id_produto += 1
-        
-        gerador_codigo_barras = barcode.generation.BarcodeGenerator(barcode.generation.EncodeTypes.CODE_39_STANDARD)
-        gerador_codigo_barras.code_text = f"{self.nome} - {self.id_produto}"
+    def __init__(self, nome: str, preco: float|int, marca_produto):
+        marcas_validas = []
+        for marca in Marca:
+            marcas_validas.append(Marca[marca.name].name)
 
-        self.codigo_de_barras = gerador_codigo_barras
+        try:
+            if type(nome) != str or type(preco) not in (int, float):
+                raise excecoes.TipoIncorretoError
+            if preco < 0:
+                raise excecoes.PrecoNegativoError
+            elif marca_produto.name not in marcas_validas:
+                raise excecoes.MarcaInvalidaError
+    
+        except excecoes.TipoIncorretoError as err:
+            print(err)
+        except excecoes.PrecoNegativoError as err:
+            print(err)
+        except excecoes.MarcaInvalidaError as err:
+            print(err)
+        
+        finally:
+            print("Produto não foi adicionado.")
+        else:
+            self.nome = nome
+            self.preco = preco
+            self.marca_produto = marca_produto
+
+            self.id_produto = Produto.id_produto
+            Produto.id_produto += 1
+            
+            gerador_codigo_barras = barcode.generation.BarcodeGenerator(barcode.generation.EncodeTypes.CODE_39_STANDARD)
+            gerador_codigo_barras.code_text = f"{self.nome} - {self.id_produto}"
+
+            self.codigo_de_barras = gerador_codigo_barras
         
     def __str__(self):
         return f"{self.nome} - ({self.marca_produto})"
