@@ -155,7 +155,7 @@ prod_1 = Chocolate("Talento", 8, Marca.NESTLE, "Maracujá", 80)
 prod_2 = Chocolate("Barra de Chocolate", 6.5, Marca.GAROTO, "Chocolate Amargo", 75)
 prod_3 = Chocolate("Bombom Serenata", 1, Marca.GAROTO, "Amendoim", 10)
 
-prod_4 = Roupa("Calça", -120, Marca.MARISA, "jeans")
+prod_4 = Roupa("Calça", 120, Marca.MARISA, "jeans")
 prod_5 = Roupa("Vestido", 90, Marca.RENNER, "Malha Estampada")
 prod_6 = Roupa("Jaqueta", 240, Marca.RENNER, "Couro")
 
