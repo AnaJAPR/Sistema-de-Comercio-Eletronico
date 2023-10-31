@@ -5,7 +5,7 @@
 
 ## Integrantes:
 
-- Ana Júlia Pereira Rocha
+- Ana Júlia Amaro Pereira Rocha
 - Henzo Felipe Carvalho de Mattos
 - Sillas Rocha da Costa
 
