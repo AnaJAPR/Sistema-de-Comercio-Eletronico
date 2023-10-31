@@ -1,4 +1,5 @@
 from rascunho_ana import Produto
+import excecoes
 
 class Inventario:
     """ Classe de um inventário que aceita apenas uma lista
@@ -6,6 +7,17 @@ class Inventario:
     """
 
     def __init__(self, produtos: list[Produto]):
+        try:
+            if type(produtos) != list:
+                raise excecoes.TipoIncorretoError
+            else:
+                for cada_produto in produtos:
+                    if type(cada_produto) != Produto:
+                        raise excecoes.TipoIncorretoError
+    
+        except excecoes.TipoIncorretoError as err:
+            print(err)
+
         self.produtos = dict()
         self.lista = produtos
 
@@ -18,15 +30,17 @@ class Inventario:
     def __getitem__(self, p):
         return self.produtos[p]
 
-    def __str__(self):
-        print("-----------------------------------")
-        print("|           Produto |  Quantidade |")
+    def mostrar(self):
+        print("--------------------------------------------")
+        print("|           Produto |  Quantidade |  Preço |")
 
-        for produto in self.produtos:
-            print("|-------------------|-------------|")
-            print(f"|         {produto:>9} |    {self.produtos[produto]:>8} |")
+        for produto in self.lista:
+            nome = produto.get_nome()
 
-        return "-----------------------------------"
+            print("|-------------------|-------------|--------|")
+            print(f"| {nome:>17} | {self.produtos[nome]:>11} | {produto.get_preco():>6} |")
+
+        print("--------------------------------------------")
 
     def remover(self, produto, quantidade):
         # Remove a quantidade. A validação deve vir da Loja.
@@ -51,8 +65,16 @@ class Inventario:
 
     @lista.setter
     def lista(self, produtos):
-        if isinstance(produtos, list):
-            self.__lista = produtos
-        else:
-            print("Não foi possível iniciar o inventário, tente inserir uma lista de produtos.")
-            raise Exception
+        try:
+            if ~isinstance(produtos, list):
+                raise excecoes.TipoIncorretoError
+            else:
+                for cada_produto in produtos:
+                    if ~isinstance(cada_produto, Produto):
+                        raise excecoes.TipoIncorretoError
+    
+        except excecoes.TipoIncorretoError as err:
+            print(err)
+
+        self.__lista = produtos
+    
