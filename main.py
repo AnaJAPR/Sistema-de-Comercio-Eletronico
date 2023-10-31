@@ -1,7 +1,7 @@
-from rascunho_ana import Chocolate, Roupa, Refrigerante, Marca
-from test_invetario import Inventario 
-import Menu
-import Loja
+from produtos import Chocolate, Roupa, Refrigerante, Marca
+from inventario import Inventario 
+import iterativo
+import loja
 
 # Criando os produtos da loja
 prod_1 = Chocolate("Talento", 8, Marca.NESTLE, "Maracujá", 80)
@@ -17,9 +17,9 @@ prod_8 = Refrigerante("Coca-Cola", 12, Marca.COCA_COLA, "KS", "Coca-Cola")
 prod_9 = Refrigerante("Guaraná", 9, Marca.GUARANA, "garrafa plástica", "Guaraná")
 
 # Criando a loja e adicionando os produtos nela
-loja = Loja.Loja("Varejo", [prod_1, prod_2, prod_3, prod_4, prod_5, prod_6, prod_7, prod_8, prod_9])
+loja = loja.Loja("Dama Shop", [prod_1, prod_2, prod_3, prod_4, prod_5, prod_6, prod_7, prod_8, prod_9])
 
 # Cria o menu da loja e o executa
-Menu.menu = Menu.App(loja)
-Menu.menu.execute()
+iterativo.menu = iterativo.App(loja)
+iterativo.menu.execute()
 

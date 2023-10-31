@@ -1,11 +1,4 @@
 import sys
-from rascunho_ana import Marca
-from rascunho_ana import Produto 
-from rascunho_ana import Chocolate 
-from rascunho_ana import Roupa 
-from rascunho_ana import Refrigerante
-from test_invetario import Inventario
-from Loja import Loja 
 
 def input_validate(message, start, end):
     """ Valida o input entre start e end, usando uma mensagem. """
@@ -19,7 +12,7 @@ def input_validate(message, start, end):
         
         except TypeError:
             print("Digite apenas inteiros!")
-        except:
+        except BaseException:
             print(f"Inválido, tente números entre {start} e {end}.")
 
 
@@ -141,10 +134,4 @@ class App:
 
 
 if __name__ == "__main__":
-    # prod_1 = Chocolate("Talento", 8, Marca.NESTLE, "Maracujá", 80)
-    # prod_2 = Roupa("Calça", 120, Marca.MARISA, "jeans")
-
-    # loja = Loja("Varejo", [prod_1, prod_2])
-    # menu = App(loja)
-    # menu.execute()
     pass

@@ -1,4 +1,4 @@
-from rascunho_ana import Produto
+from produtos import Produto
 import excecoes
 
 class Inventario:
@@ -31,16 +31,16 @@ class Inventario:
         return self.produtos[p]
 
     def mostrar(self):
-        print("--------------------------------------------")
-        print("|           Produto |  Quantidade |  Preço |")
+        print("-----------------------------------------------")
+        print("|              Produto |  Quantidade |  Preço |")
 
         for produto in self.lista:
             nome = produto.get_nome()
 
-            print("|-------------------|-------------|--------|")
-            print(f"| {nome:>17} | {self.produtos[nome]:>11} | {produto.get_preco():>6} |")
+            print("|----------------------|-------------|--------|")
+            print(f"| {nome:>20} | {self.produtos[nome]:>11} | {produto.get_preco():>6} |")
 
-        print("--------------------------------------------")
+        print("-----------------------------------------------")
 
     def remover(self, produto, quantidade):
         # Remove a quantidade. A validação deve vir da Loja.

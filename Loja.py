@@ -1,4 +1,4 @@
-from test_invetario import Inventario
+from inventario import Inventario
 import excecoes
 
 class Loja:
