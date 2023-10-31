@@ -15,7 +15,7 @@ Rode no terminal o comando:
 
 ```pip install -r requirements.txt```
 
-Após isso execute o módulo main que gerará a interface de terminal iterativa com o usuário.
+Após isso execute o módulo main que gerará a interface de terminal iterativa com o usuário, os nomes de produtos válidos estão listados abaixo com seus respectivos tipos de Produto.
 
 ### Produtos disponíveis
 

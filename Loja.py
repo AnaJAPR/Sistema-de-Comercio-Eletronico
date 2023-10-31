@@ -1,4 +1,5 @@
 from test_invetario import Inventario
+import excecoes
 
 class Loja:
     """ Classe de uma loja genérica, com inventário e vendas próprias. """
@@ -12,16 +13,30 @@ class Loja:
         """ Vende certa quantia de um produto. """
 
         # Verifica se há a quantia no inventário
-        if self.inventario.produtos[produto] >= quantidade:
+        try:
+            if self.inventario.produtos[produto] < quantidade:
+                raise excecoes.PrecoNegativoError
+        
+        except excecoes.PrecoNegativoError:
+            print("Estoque insuficiente. A quantidade vendida deve ser menor ou igual a quantidade em estoque.")
+        
+        else:
             self.vendas.append([produto, quantidade])
             self.inventario.remover(produto, quantidade)
-        else:
-            print("Estoque insuficiente.")
 
     def repor(self, produto, quantidade):
         """ Repõe certa quantia no inventário. """
+
+        try:
+            if quantidade < 0:
+                raise excecoes.PrecoNegativoError
         
-        self.inventario.adicionar(produto, quantidade)
+        except excecoes.PrecoNegativoError as err:
+            print("Quantidade inválida.")
+            print(err)
+        
+        else:
+            self.inventario.adicionar(produto, quantidade)
 
     def retornar(self, produto, quantidade):
         """ Retorna certa venda feita. """
