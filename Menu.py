@@ -115,8 +115,11 @@ class App:
         while True:
             nome = input("Digite o nome do produto: ")
 
+            if nome == '0':
+                sys.exit(1)
+
             if self.loja.inventario.pesquisa(nome) == -1:
-                print("Produto não está no inventário!")
+                print("Produto não está no inventário! Digite 0 para sair.")
                 continue
             else:
                 break
@@ -135,9 +138,13 @@ class App:
 
         self.menu.execute()
 
-prod_1 = Chocolate("Talento", 8, Marca.NESTLE, "Maracujá", 80)
-prod_2 = Roupa("Calça", 120, Marca.MARISA, "jeans")
 
-loja = Loja("Varejo", [prod_1, prod_2])
-menu = App(loja)
-menu.execute()
+
+if __name__ == "__main__":
+    # prod_1 = Chocolate("Talento", 8, Marca.NESTLE, "Maracujá", 80)
+    # prod_2 = Roupa("Calça", 120, Marca.MARISA, "jeans")
+
+    # loja = Loja("Varejo", [prod_1, prod_2])
+    # menu = App(loja)
+    # menu.execute()
+    pass
