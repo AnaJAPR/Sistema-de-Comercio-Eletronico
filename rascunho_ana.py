@@ -17,18 +17,18 @@ class Marca(Enum):
 
 class Produto():
     id_produto = 1
+    marcas_validas = []
+    for marca in Marca:
+        marcas_validas.append(Marca[marca.name].name)
 
     def __init__(self, nome: str, preco: float|int, marca_produto):
-        marcas_validas = []
-        for marca in Marca:
-            marcas_validas.append(Marca[marca.name].name)
     
         try:
             if type(nome) != str or type(preco) not in (int, float):
                 raise excecoes.TipoIncorretoError
             if preco < 0:
                 raise excecoes.PrecoNegativoError
-            elif marca_produto.name not in marcas_validas:
+            elif marca_produto.name not in Produto.marcas_validas:
                 raise excecoes.MarcaInvalidaError
     
         except excecoes.TipoIncorretoError as err:
@@ -74,7 +74,7 @@ class Produto():
         return self.marca_produto
     
     def set_marca_produto(self, nova_marca_produto):
-        if type(nova_marca_produto) == str:
+        if nova_marca_produto.name in Produto.marcas_validas:
             self.nova_marca_produto = nova_marca_produto
         else:
             print("A marca do produto deve ser uma string!")
@@ -155,7 +155,7 @@ prod_1 = Chocolate("Talento", 8, Marca.NESTLE, "Maracujá", 80)
 prod_2 = Chocolate("Barra de Chocolate", 6.5, Marca.GAROTO, "Chocolate Amargo", 75)
 prod_3 = Chocolate("Bombom Serenata", 1, Marca.GAROTO, "Amendoim", 10)
 
-prod_4 = Roupa("Calça", -120, Marca.MARISA, "jeans")
+prod_4 = Roupa("Calça", 120, Marca.MARISA, "jeans")
 prod_5 = Roupa("Vestido", 90, Marca.RENNER, "Malha Estampada")
 prod_6 = Roupa("Jaqueta", 240, Marca.RENNER, "Couro")
 

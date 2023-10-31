@@ -9,6 +9,9 @@ class Loja:
         self.vendas = []
 
     def vender(self, produto, quantidade):
+        """ Vende certa quantia de um produto. """
+
+        # Verifica se há a quantia no inventário
         if self.inventario.produtos[produto] >= quantidade:
             self.vendas.append([produto, quantidade])
             self.inventario.remover(produto, quantidade)
@@ -16,21 +19,29 @@ class Loja:
             print("Estoque insuficiente.")
 
     def repor(self, produto, quantidade):
+        """ Repõe certa quantia no inventário. """
+        
         self.inventario.adicionar(produto, quantidade)
 
     def retornar(self, produto, quantidade):
+        """ Retorna certa venda feita. """
+
         self.vendas.remove([produto, quantidade])
         self.inventario.adicionar(produto, quantidade)
 
     def mostrar_vendas(self):
+        """ Mostra a lista das vendas feitas até então. """
+
         print("===  Vendas  ===")
 
+        # Itera sobre cada venda na lista
         for venda in self.vendas:
             produto = venda[0]
             quantidade = venda[1]
 
             indice = self.inventario.pesquisa(produto)
 
+            # Se o indice for -1, o produto não terá preço
             if indice == -1:
                 continue
 
