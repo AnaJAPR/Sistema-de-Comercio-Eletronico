@@ -24,7 +24,7 @@ class Inventario:
 
         for produto in self.produtos:
             print("|-------------------|-------------|--------|")
-            print(f"| {produto:>17} | {self.produtos[produto]:>11} | ")
+            print(f"| {produto:>17} | {self.produtos[produto]:>11} |  ")
 
         print("-----------------------------------")
 

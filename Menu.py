@@ -55,6 +55,7 @@ class Menu:
                 sys.exit(0)
             else:
                 self.options[choice][1]()
+                input("...Enter para continuar...")
 
 class App:
     """ Classe de um aplicativo que encapsula o menu da loja e o executa. """
@@ -62,16 +63,68 @@ class App:
         self.loja = loja
         self.menu = Menu()
 
-        self.menu.add_option("Venda", self.loja.vender)
-        self.menu.add_option("Retorno", self.loja.retornar)
-        self.menu.add_option("Restoque", self.loja.repor)
+        self.menu.add_option("Venda", self.vender)
+        self.menu.add_option("Retorno", self.retornar)
+        self.menu.add_option("Restoque", self.repor)
         self.menu.add_option("Mostrar venda", self.loja.mostrar_vendas)
         self.menu.add_option("Mostrar inventário", self.loja.inventario.mostrar)
+        self.menu.add_option("Salvar código de barras", self.loja.codigo_barra)
+
+    def vender(self):
+        produto = self.pede_nome()
+        quantidade = self.pede_quantidade()
+
+        self.loja.vender(produto, quantidade)
+
+    def retornar(self):
+        produto = self.pede_nome()
+        quantidade = self.pede_quantidade()
+
+        self.loja.retornar(produto, quantidade)
+
+    def repor(self):
+        produto = self.pede_nome()
+        quantidade = self.pede_quantidade()
+
+        self.loja.repor(produto, quantidade)
+
+    def codigo_barra(self):
+        produto = self.pede_nome()
+
+        indice = self.loja.inventario.pesquisa(produto)
+        self.loja.inventario.lista[indice].codigo_de_barras()
+
+        print("Código de barras gerado com sucesso.")
+
+    def pede_nome(self):
+        while True:
+            nome = input("Digite o nome do produto: ")
+
+            if self.loja.inventario.pesquisa(nome) == -1:
+                print("Produto não está no inventário!")
+                continue
+            else:
+                break
+
+        return nome
+            
+    def pede_quantidade(self):
+        while True:
+            try:
+                quantidade = int(input("Digite a quantidade: "))
+                break
+            except ValueError:
+                print("Digite apenas inteiros!")
+                raise ValueError
+            except Exception:
+                raise Exception
+            
+        return quantidade
 
     def execute(self):
         self.menu.execute()
 
-prod_1 = Chocolate("Talento", 8, "nestle", "prestigio", 80)
+prod_1 = Chocolate("Talento", 8, Marca.NESTLE, "Maracujá", 80)
 prod_2 = Roupa("Calça", 120, "Marisa", "jeans")
 
 loja = Loja("Varejo", [prod_1, prod_2])

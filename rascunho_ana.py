@@ -165,7 +165,7 @@ prod_9 = Refrigerante("Guaraná", 9, Marca.GUARANA, "garrafa plástica", "Guaran
 
 
 if __name__ == "__main__":
-    # print(prod_1)
+    print(getattr(prod_1, 'preco'))
     # print(prod_2)
     # print(prod_3)
     # print(prod_4)

@@ -1,6 +1,8 @@
 from test_invetario import Inventario
 
 class Loja:
+    """ Classe de uma loja genérica, com inventário e vendas próprias. """
+    
     def __init__(self, nome, produtos):
         self.nome = nome
         self.inventario = Inventario(produtos)
