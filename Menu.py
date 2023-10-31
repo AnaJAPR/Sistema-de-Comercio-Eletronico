@@ -16,6 +16,7 @@ def input_validate(message, start, end):
             
             if start <= choice <= end:
                 return choice
+        
         except TypeError:
             print("Digite apenas inteiros!")
         except:
@@ -34,19 +35,20 @@ class Menu:
         self.options.append([nome, function])
     
     def show(self):
-        """ Printa o menu e suas opções na tela. """
+        """ Mostra o menu e suas opções na tela. """
 
         print("=" * 5)
         print("Menu")
         print("=" * 5 + "\n")
 
+        # Itera sobre as opções do menu, mostrando-as
         for code, option in enumerate(self.options):
             print(f"[{code}] - {option[0]}")
 
         print()
 
     def execute(self):
-        """ Executa o menu, printando suas opções e validando a escolha do usuário. """
+        """ Executa o menu, mostrando suas opções e validando a escolha do usuário. """
 
         while True:
             self.show()
@@ -56,7 +58,7 @@ class Menu:
                 sys.exit(0)
             else:
                 self.options[choice][1]()
-                input("...Enter para continuar...")
+                input("...Enter para continuar...\n")
 
 class App:
     """ Classe de um aplicativo que encapsula o menu da loja e o executa. """
@@ -124,23 +126,13 @@ class App:
     def pede_quantidade(self):
         """ Recebe uma quantidade em inteiros positivos. """
 
-        while True:
-            try:
-                quantidade = int(input("Digite a quantidade: "))
+        quantidade = input_validate("Digite a quantidade: ", 0, 1000)
 
-                if quantidade < 0:
-                    raise ValueError
-                
-                break
-            except ValueError:
-                print("Digite apenas inteiros!")
-                raise ValueError
-            except Exception:
-                raise Exception
-            
         return quantidade
 
     def execute(self):
+        """ Encapsula o executar do menu. """
+
         self.menu.execute()
 
 prod_1 = Chocolate("Talento", 8, Marca.NESTLE, "Maracujá", 80)
