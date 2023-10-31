@@ -1,4 +1,5 @@
 from rascunho_ana import Produto
+import excecoes
 
 class Inventario:
     """ Classe de um inventário que aceita apenas uma lista
@@ -6,11 +7,23 @@ class Inventario:
     """
 
     def __init__(self, produtos: list[Produto]):
-        self.produtos = dict()
-        self.lista = produtos
+        try:
+            if type(produtos) != list:
+                raise excecoes.TipoIncorretoError
+            else:
+                for cada_produto in produtos:
+                    if type(cada_produto) != Produto:
+                        raise excecoes.TipoIncorretoError
+    
+        except excecoes.TipoIncorretoError as err:
+            print(err)
 
-        for produto in produtos:
-            self.produtos[produto.nome] = 0
+        else:
+            self.produtos = dict()
+            self.lista = produtos
+
+            for produto in produtos:
+                self.produtos[produto.nome] = 0
 
     def __len__(self):
         return len(self.produtos.size)
@@ -51,8 +64,17 @@ class Inventario:
 
     @lista.setter
     def lista(self, produtos):
-        if isinstance(produtos, list):
-            self.__lista = produtos
+        try:
+            if type(produtos) != list:
+                raise excecoes.TipoIncorretoError
+            else:
+                for cada_produto in produtos:
+                    if type(cada_produto) != Produto:
+                        raise excecoes.TipoIncorretoError
+    
+        except excecoes.TipoIncorretoError as err:
+            print(err)
+
         else:
-            print("Não foi possível iniciar o inventário, tente inserir uma lista de produtos.")
-            raise Exception
+            self.__lista = produtos
+    

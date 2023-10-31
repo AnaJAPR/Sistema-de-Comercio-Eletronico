@@ -2,6 +2,7 @@ from enum import Enum
 import aspose.barcode as barcode
 import excecoes
 
+# Cria classe com Enum de cada marca dos produtos do inventário
 class Marca(Enum):
     NESTLE = 101
     GAROTO = 102
@@ -14,9 +15,12 @@ class Marca(Enum):
     def __str__(self):
         return self.name
 
-
+# Cria classe com as características gerais de um produto
 class Produto():
     id_produto = 1
+    
+    # Testa se a marca do produto está na classe com os nomes e Enums de cada marca
+    # Trata exceções de tipo dos demais atributos de um produto também
     marcas_validas = []
     for marca in Marca:
         marcas_validas.append(Marca[marca.name].name)
@@ -46,12 +50,13 @@ class Produto():
             self.id_produto = Produto.id_produto
             Produto.id_produto += 1
             
+            # gera um código de barras automaticamente para cada produto criado
             gerador_codigo_barras = barcode.generation.BarcodeGenerator(barcode.generation.EncodeTypes.CODE_39_STANDARD)
             gerador_codigo_barras.code_text = f"{self.nome} - {self.id_produto}"
 
             self.codigo_de_barras = gerador_codigo_barras
         
-        
+    # Cria getters e setters para cada atributo da classe Produto
     def get_nome(self):
         return self.nome
     
@@ -78,19 +83,24 @@ class Produto():
             self.nova_marca_produto = nova_marca_produto
         else:
             print("A marca do produto deve ser uma string!")
-            
+    
+    
+    # Quando imprimir o produto, aparece esse string formatada com apenas o nome e a marca do produto        
     def __str__(self):
         return f"{self.nome} - ({self.marca_produto})"
     
+    # Salva o código de barras criado para o produto
     def salvar_codigo_barras(self, path:str="./"):
         self.codigo_de_barras.save(f"{path}cod_barras_{self.nome}_{self.id_produto}.png")
     
 
+# Cria classe com o primeiro tipo de produto: Roupa
 class Roupa(Produto):
     def __init__(self, nome, valor, marca_produto, tipo_tecido):
         super().__init__(nome, valor, marca_produto)
         self.tipo_tecido = tipo_tecido
-        
+    
+    # Cria get e set para o atributo específico dessa classe, já que os demais ela herdou da classe pai
     def get_tipo_tecido(self):
         return self.tipo_tecido
     
@@ -101,12 +111,14 @@ class Roupa(Produto):
             print("O tipo do tecido deve ser uma string!")
 
 
+# Cria classe com o segundo tipo de produto: Chocolate
 class Chocolate(Produto):
     def __init__(self, nome, valor, marca_produto, sabor, peso_mg):
         super().__init__(nome, valor, marca_produto)
         self.sabor = sabor
         self.peso_mg = peso_mg
-        
+    
+    # Cria getter e setter para os dois atributos específicos dessa classe
     def get_sabor(self):
         return self.sabor
     
@@ -126,12 +138,14 @@ class Chocolate(Produto):
             print("O peso, em miligramas, do chocolate não pode ser negativo!")
 
 
+# cria classe com terceiro tipo de produto: Refrigerante
 class Refrigerante(Produto):
     def __init__(self, nome, valor, marca_produto, tipo_recipiente, sabor):
         super().__init__(nome, valor, marca_produto)
         self.tipo_recipiente = tipo_recipiente
         self.sabor = sabor
-        
+    
+    # Cria getters e setters para os dois atributos específicos dessa classe
     def get_tipo_recipiente(self):
         return self.tipo_recipiente
     

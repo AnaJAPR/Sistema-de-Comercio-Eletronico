@@ -1,10 +1,3 @@
-'''
-class DeuRuimError(ZeroDivisionError):
-    def __init__(self, message="Deu Ruim, mané!"): # essa mensagem é obrigatória no caso de exceções
-        self.message = message
-        super().__init__(self.message)
-
-'''
 
 class TipoIncorretoError(TypeError):
     # Verifica se o tipo do dado está correto ou não
