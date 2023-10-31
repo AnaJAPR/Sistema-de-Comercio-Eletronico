@@ -26,8 +26,12 @@ class Loja:
     def retornar(self, produto, quantidade):
         """ Retorna certa venda feita. """
 
-        self.vendas.remove([produto, quantidade])
-        self.inventario.adicionar(produto, quantidade)
+        # Verifica se a venda foi feita anteriormente
+        if [produto, quantidade] in self.vendas:
+            self.vendas.remove([produto, quantidade])
+            self.inventario.adicionar(produto, quantidade)
+        else:
+            print("Esta venda não foi feita!")
 
     def mostrar_vendas(self):
         """ Mostra a lista das vendas feitas até então. """

@@ -18,12 +18,11 @@ class Inventario:
         except excecoes.TipoIncorretoError as err:
             print(err)
 
-        else:
-            self.produtos = dict()
-            self.lista = produtos
+        self.produtos = dict()
+        self.lista = produtos
 
-            for produto in produtos:
-                self.produtos[produto.nome] = 0
+        for produto in produtos:
+            self.produtos[produto.nome] = 0
 
     def __len__(self):
         return len(self.produtos.size)
@@ -35,11 +34,13 @@ class Inventario:
         print("--------------------------------------------")
         print("|           Produto |  Quantidade |  Preço |")
 
-        for produto in self.produtos:
-            print("|-------------------|-------------|--------|")
-            print(f"| {produto:>17} | {self.produtos[produto]:>11} |  ")
+        for produto in self.lista:
+            nome = produto.get_nome()
 
-        print("-----------------------------------")
+            print("|-------------------|-------------|--------|")
+            print(f"| {nome:>17} | {self.produtos[nome]:>11} | {produto.get_preco():>6} |")
+
+        print("--------------------------------------------")
 
     def remover(self, produto, quantidade):
         # Remove a quantidade. A validação deve vir da Loja.
@@ -65,16 +66,15 @@ class Inventario:
     @lista.setter
     def lista(self, produtos):
         try:
-            if type(produtos) != list:
+            if ~isinstance(produtos, list):
                 raise excecoes.TipoIncorretoError
             else:
                 for cada_produto in produtos:
-                    if type(cada_produto) != Produto:
+                    if ~isinstance(cada_produto, Produto):
                         raise excecoes.TipoIncorretoError
     
         except excecoes.TipoIncorretoError as err:
             print(err)
 
-        else:
-            self.__lista = produtos
+        self.__lista = produtos
     
