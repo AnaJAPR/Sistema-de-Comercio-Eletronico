@@ -1,5 +1,5 @@
 from rascunho_ana import Produto 
-from rascunho_ana import Cholocate 
+from rascunho_ana import Chocolate 
 from rascunho_ana import Roupa 
 from test_invetario import Inventario 
 import Menu
@@ -43,8 +43,8 @@ class Loja:
         
         print("================")
 
-prod_1 = Cholocate("Talento", 8, 325341, "nestle", "prestigio", 80)
-prod_2 = Roupa("Calça", 120, 546372, "Marisa", "calça", "jeans")
+prod_1 = Chocolate("Talento", 8, "nestle", "prestigio", 80)
+prod_2 = Roupa("Calça", 120, "Marisa", "jeans")
 
 loja = Loja("Varejo", [prod_1, prod_2])
 loja.repor('Talento', 100)
