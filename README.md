@@ -1,7 +1,9 @@
 # Sistema-de-Comercio-Eletronico
 
-## Atividade da disciplina de Linguagens de Programação 2023/2.
-#### O objetivo é criar um Sistema de Comércio Eletrônico usando conceitos de Orientação Objeto que estamos estudando no momento.
+Atividade da disciplina de Linguagens de Programação dos cursos de Ciência de Dados e IA e Matemática Aplicada da FGV-EMAP.
+
+## Objetivo:
+Criar um Sistema de Comércio Eletrônico usando conceitos de Orientação Objeto que estamos estudando no momento.
 
 ## Integrantes:
 
